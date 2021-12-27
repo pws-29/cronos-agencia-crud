@@ -14,4 +14,9 @@ let Modal = {
 }
 // Ações de Modal
 
+// Local Storage
+
+
+// Local Storage
+
 
