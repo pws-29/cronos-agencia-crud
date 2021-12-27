@@ -49,6 +49,26 @@ let cursos = [
 ]
 // Lista Cursos
 
+// CRUD curso
+const Curso = {
+  all: Storage.get(),
+
+  add(curso) {
+    Transaction.all.push(curso)
+
+    App.reload();
+  }
+}
+// CRUD curso
+
+// Montando DOM
+const DOM = {
+  // corpo da tabela (onde os cursos são inseridos)
+  cursosTabela: document.querySelector('.table tbody')
+}
+
+// Montando DOM
+
 // Informações formulário
 const Form = {
   getValues() {
@@ -67,8 +87,25 @@ const Form = {
     const Cursos = Form.getValues();
     // Fechar o modal
     Modal.close();
-    console.log(Cursos);
+    // Salvar curso e Reload
+
   }
 }
-
 // Informações formulário
+
+// Funções iniciar App
+const App = {
+  init() {
+    // Montando html
+    Curso.all.forEach(DOM.addCurso)
+
+    // Set storage
+    Storage.set(Transaction.all)
+  },
+  reload() {
+    App.init();
+  }
+}
+// Funções iniciar App
+
+console.log(DOM.cursosTabela)
