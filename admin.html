@@ -105,17 +105,17 @@
           <div class="input-imagens">
             <h4>Selecione Imagem</h4>
 
-            <div class="input-container">
+            <div class="input-container" id="input-container">
               <label for="img-web" class="imgLabel">
-                <input type="radio" name="input-img" id="img-web">
+                <input type="radio" name="input-img" id="img-web" value="./imagens/ilustra-web.png">
                 <img src="./imagens/ilustra-web.png" alt="">
               </label>
               <label for="img-ux" class="imgLabel">
-                <input type="radio" name="input-img" id="img-ux">
+                <input type="radio" name="input-img" id="img-ux" value="./imagens/ilustra-ux.png">
                 <img src="./imagens/ilustra-ux.png" alt="">
               </label>
               <label for="img-mkt" class="imgLabel">
-                <input type="radio" name="input-img" id="img-mkt">
+                <input type="radio" name="input-img" id="img-mkt" value="./imagens/ilustra-marketing.png">
                 <img src="./imagens/ilustra-marketing.png" alt="">
               </label>
             </div>
@@ -126,7 +126,7 @@
             <a href="#" class="button cancel" onclick="Modal.close()">
               Cancelar
             </a>
-            <button>Adicionar</button>
+            <button onclick="Form.submit(event);">Adicionar</button>
             <!--primeiro botão = submit-->
           </div>
         </form>
