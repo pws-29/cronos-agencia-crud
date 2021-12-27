@@ -1,4 +1,4 @@
-// Abertura de modal
+// Ações de Modal
 let Modal = {
   open() {
     // Abrir modal
@@ -12,3 +12,6 @@ let Modal = {
     document.querySelector('.modal-overlay').classList.remove('active');
   }
 }
+// Ações de Modal
+
+
