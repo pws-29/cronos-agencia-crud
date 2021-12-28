@@ -107,9 +107,9 @@ const Form = {
   },
 
   limparCampos() {
-    document.querySelector("#name").value = "";
-    document.querySelector("#description").value = "";
-    document.querySelector('input[name="input-img"]:checked').value = "";
+    document.querySelector("#name").value = ""; // Limpar input do nome
+    document.querySelector("#description").value = ""; // Limpar input da descricao
+    document.getElementById("img-web").checked = true; // Retornar o valor checked pra img 1.
   },
 
   submit(event) {
