@@ -51,6 +51,7 @@ let cursos = [
 
 // CRUD curso
 const Curso = {
+  // Recupera valores do localStorage
   all: Storage.get(),
 
   add(curso) {
@@ -105,12 +106,20 @@ const Form = {
     }
   },
 
+  limparCampos() {
+    document.querySelector("#name").value = "";
+    document.querySelector("#description").value = "";
+    document.querySelector('input[name="input-img"]:checked').value = "";
+  },
+
   submit(event) {
     // Alterar comportamento padrão do submit
     event.preventDefault();
 
     // Buscar valores do Form
     const cursos = Form.getValues();
+    // Apagar campos do formulário
+    Form.limparCampos();
     // Fechar o modal
     Modal.close();
     // Salvar curso e Reload
