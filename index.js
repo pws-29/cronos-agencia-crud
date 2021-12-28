@@ -88,7 +88,7 @@ const DOM = {
   },
 
   // limpar o html no Reload para não duplicar a informação
-  limparHtml() {
+  limparHtmlTabela() {
     DOM.cursosTabela.innerHTML = "";
   }
 
@@ -114,7 +114,7 @@ const Form = {
 
   validarCampos(cursos) {
     // Valida se os campos nome e descricao estão preenchidos
-    const { nome, descricao } = cursos;
+    const { nome, descricao } = cursos; // desestruturação
 
     if (descricao.trim() === "" || nome.trim() === "") { // trim remove os espaços em branco
       throw new Error("[Erro] Todos os campos devem ser preenchidos!")
@@ -148,13 +148,13 @@ const Form = {
 const App = {
   init() {
     // Montando html
-    Curso.all.forEach(DOM.addCurso)
+    Curso.all.forEach(DOM.addCurso);
 
     // Set storage
-    Storage.set(Curso.all)
+    Storage.set(Curso.all);
   },
   reload() {
-    DOM.limparHtml();
+    DOM.limparHtmlTabela();
     App.init();
   }
 }
