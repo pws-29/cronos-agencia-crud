@@ -112,18 +112,34 @@ const Form = {
     document.getElementById("img-web").checked = true; // Retornar o valor checked pra img 1.
   },
 
+  validarCampos(cursos) {
+    // Valida se os campos nome e descricao estão preenchidos
+    const { nome, descricao } = cursos;
+
+    if (descricao.trim() === "" || nome.trim() === "") { // trim remove os espaços em branco
+      throw new Error("[Erro] Todos os campos devem ser preenchidos!")
+    }
+  },
+
   submit(event) {
     // Alterar comportamento padrão do submit
     event.preventDefault();
 
-    // Buscar valores do Form
-    const cursos = Form.getValues();
-    // Apagar campos do formulário
-    Form.limparCampos();
-    // Fechar o modal
-    Modal.close();
-    // Salvar curso e Reload
-    Curso.add(cursos)
+    try {
+      // Buscar valores do Form
+      const cursos = Form.getValues();
+      // Validando campos do Formulário
+      Form.validarCampos(cursos);
+      // Apagar campos do formulário
+      Form.limparCampos();
+      // Fechar o modal
+      Modal.close();
+      // Salvar curso e Reload
+      Curso.add(cursos)
+    } catch (error) {
+      alert(error.message)
+    }
+
   }
 }
 // Informações formulário
