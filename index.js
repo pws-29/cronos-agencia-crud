@@ -54,7 +54,7 @@ const Curso = {
   all: Storage.get(),
 
   add(curso) {
-    Transaction.all.push(curso)
+    Curso.all.push(curso) // adicionar curso no localStorage
 
     App.reload();
   }
@@ -64,7 +64,33 @@ const Curso = {
 // Montando DOM
 const DOM = {
   // corpo da tabela (onde os cursos são inseridos)
-  cursosTabela: document.querySelector('.table tbody')
+  cursosTabela: document.querySelector('.table tbody'),
+
+  addCurso(curso) {
+    DOM.cursosTabela.innerHTML += DOM.innerHTMLCursos(curso);
+  },
+
+  innerHTMLCursos(curso) {
+    let htmlCursos = `
+    <tr>
+    <td>${curso.nome}</td>
+    <td><img src="${curso.imagem}" class="img-fluid" /></td>
+    <td>${curso.descricao}</td>
+    <td>
+      <button class="btn btn-secondary m-1">editar</button>
+      <button class="btn btn-danger m-1">excluir</button>
+    </td>
+  </tr>
+    `
+
+    return htmlCursos
+  },
+
+  // limpar o html no Reload para não duplicar a informação
+  limparHtml() {
+    DOM.cursosTabela.innerHTML = "";
+  }
+
 }
 
 // Montando DOM
@@ -84,11 +110,11 @@ const Form = {
     event.preventDefault();
 
     // Buscar valores do Form
-    const Cursos = Form.getValues();
+    const cursos = Form.getValues();
     // Fechar o modal
     Modal.close();
     // Salvar curso e Reload
-
+    Curso.add(cursos)
   }
 }
 // Informações formulário
@@ -100,12 +126,11 @@ const App = {
     Curso.all.forEach(DOM.addCurso)
 
     // Set storage
-    Storage.set(Transaction.all)
+    Storage.set(Curso.all)
   },
   reload() {
+    DOM.limparHtml();
     App.init();
   }
 }
 // Funções iniciar App
-
-console.log(DOM.cursosTabela)
