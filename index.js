@@ -20,7 +20,7 @@ const Storage = {
     return JSON.parse(localStorage.getItem("cronos.cursos:cursos")) || [];
   },
 
-  set() {
+  set(cursos) {
     localStorage.setItem("cronos.cursos:cursos", JSON.stringify(cursos)); // Array -> String
   }
 }
@@ -134,3 +134,5 @@ const App = {
   }
 }
 // Funções iniciar App
+
+App.init();
