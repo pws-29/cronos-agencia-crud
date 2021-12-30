@@ -73,7 +73,7 @@ const DOM = {
   },
 
   innerHTMLCursos(curso) {
-    let htmlCursos = `
+    const htmlCursos = `
     <tr>
     <td>${curso.nome}</td>
     <td><img src="${curso.imagem}" class="img-fluid" /></td>
