@@ -4,6 +4,7 @@ let Modal = {
     // Abrir modal
     // Adicionar a classe "active" ao modal
     document.querySelector('.modal-overlay').classList.add('active');
+    document.querySelector('[data-behavior="modalForm"] #name').focus();
   },
 
   close() {
