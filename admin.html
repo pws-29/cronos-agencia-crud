@@ -89,7 +89,7 @@
       <div id="formCurso">
         <h2 class="tituloModal">Novo Curso</h2>
 
-        <form action="">
+        <form action="" onsubmit="Form.submit(event);" data-behavior="modalForm">
           <div class="input-group">
             <label for="name" class="sr-only">Name</label>
             <input type="text" id="name" name="name" placeholder="Nome do Curso...">
@@ -126,7 +126,7 @@
             <a href="#" class="button cancel" onclick="Modal.close()">
               Cancelar
             </a>
-            <button onclick="Form.submit(event);">Adicionar</button>
+            <button type="submit">Adicionar</button>
             <!--primeiro botão = submit-->
           </div>
         </form>
