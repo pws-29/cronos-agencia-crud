@@ -128,15 +128,15 @@ const Form = {
 
     try {
       // Buscar valores do Form
-      const cursos = Form.getValues();
+      const curso = Form.getValues();
       // Validando campos do Formulário
-      Form.validarCampos(cursos);
+      Form.validarCampos(curso);
       // Apagar campos do formulário
       Form.limparCampos();
       // Fechar o modal
       Modal.close();
       // Salvar curso e Reload
-      Curso.add(cursos)
+      Curso.add(curso)
     } catch (error) {
       alert(error.message)
     }
