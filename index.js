@@ -88,6 +88,20 @@ const Curso = {
     Modal.open();
 
   },
+
+  update(cursoEditado) {
+    console.log('Função Update', cursoEditado)
+    const cursoId = cursoEditado.id;
+    const cursoEncontrado = Curso.all.find(curso => curso.id === cursoId);
+
+    Object.keys(cursoEditado).forEach(chave => cursoEncontrado[chave] = cursoEditado[chave])
+
+    // cursoEncontrado.nome = cursoEditado.nome;
+    // cursoEncontrado.descricao = cursoEditado.descricao;
+    // cursoEncontrado.imagem = cursoEditado.imagem;
+
+    App.reload();
+  }
 }
 // CRUD curso
 
@@ -134,8 +148,6 @@ const Form = {
     document.querySelector("#description").value = cursoEncontrado.descricao;
     document.querySelector('input[name="cursoId"]').value = cursoEncontrado.id; // Input hidden
     document.querySelector(`input[value="${cursoEncontrado.imagem}"]`).checked = true;
-    console.log(cursoEncontrado)
-
   },
 
   getValues() {
@@ -143,6 +155,7 @@ const Form = {
       nome: document.querySelector("#name").value,
       descricao: document.querySelector("#description").value,
       imagem: document.querySelector('input[name="input-img"]:checked').value,
+      id: document.querySelector('input[name="cursoId"]').value,
     }
   },
 
@@ -177,7 +190,12 @@ const Form = {
       // Fechar o modal
       Modal.close();
       // Salvar curso e Reload
-      Curso.add(curso) // todo refatorar
+
+      if (curso.id) {
+        Curso.update(curso)
+      } else {
+        Curso.add(curso)
+      }
     } catch (error) {
       alert(error.message)
     }
