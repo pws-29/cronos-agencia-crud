@@ -130,6 +130,7 @@ const Form = {
 
   getValues() {
     return {
+      id: uuidv4(), // retornar input hidden value; todo refatorar
       nome: document.querySelector("#name").value,
       descricao: document.querySelector("#description").value,
       imagem: document.querySelector('input[name="input-img"]:checked').value,
