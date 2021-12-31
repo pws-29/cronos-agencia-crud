@@ -150,8 +150,10 @@ const Form = {
       const curso = Form.getValues();
       // Validando campos do Formulário
       Form.validarCampos(curso);
-      // Apagar campos do formulário
-      Form.limparCampos();
+
+      // // Apagar campos do formulário
+      // Form.limparCampos();
+
       // Fechar o modal
       Modal.close();
       // Salvar curso e Reload
