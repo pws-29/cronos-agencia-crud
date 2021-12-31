@@ -181,7 +181,7 @@ const App = {
     Storage.set(Curso.all);
   },
   reload() {
-    DOM.limparHtmlTabela();
+    DOM.limparHtmlTabela(); // idempotencia.
     App.init();
   }
 }
