@@ -66,7 +66,7 @@ const Curso = {
 // Montando DOM
 const DOM = {
   // corpo da tabela (onde os cursos são inseridos)
-  cursosTabela: document.querySelector('.table tbody'),
+  cursosTabela: document.querySelector('[data-behavior="tbodyCursos"]'), // refatorar data-behavior. classe apenas para estilizar
 
   addCurso(curso) {
     DOM.cursosTabela.innerHTML += DOM.innerHTMLCursos(curso);
