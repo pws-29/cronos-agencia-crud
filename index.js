@@ -10,6 +10,7 @@ let Modal = {
   close() {
     // Fechar modal
     // Remover a classe "active" do modal
+    Form.limparCampos();
     document.querySelector('.modal-overlay').classList.remove('active');
   }
 }
