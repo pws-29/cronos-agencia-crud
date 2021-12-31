@@ -59,7 +59,26 @@ const Curso = {
     Curso.all.push(curso) // adicionar curso no localStorage
 
     App.reload();
-  }
+  },
+
+  destroy(cursoId) {
+
+    const cursoEncontrado = Curso.all.find(curso => curso.id === cursoId);
+    const indexDoCursoEncontrado = Curso.all.indexOf(cursoEncontrado) // poderíamos ter feito findIndex sem window.confirm
+
+    // Semáforo (if else com estrutura reduzida)
+    if (!window.confirm(`Deseja excluir o curso: ${cursoEncontrado.nome}?`))
+      return;
+
+    Curso.all.splice(indexDoCursoEncontrado, 1);
+
+    App.reload();
+  },
+
+  edit(cursoId) {
+
+
+  },
 }
 // CRUD curso
 
