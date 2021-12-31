@@ -55,8 +55,12 @@ const Curso = {
   // Recupera valores do localStorage
   all: Storage.get(),
 
-  add(curso) {
-    Curso.all.push(curso) // adicionar curso no localStorage
+  add(curso) { // create todo
+
+    Curso.all.unshift({
+      ...curso,
+      id: uuidv4()
+    })
 
     App.reload();
   },
