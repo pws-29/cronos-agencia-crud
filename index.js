@@ -81,7 +81,7 @@ const Curso = {
   },
 
   edit(cursoId) {
-
+    console.log(cursoId)
 
   },
 }
@@ -103,7 +103,7 @@ const DOM = {
     <td><img src="${curso.imagem}" class="img-fluid" /></td>
     <td>${curso.descricao}</td>
     <td>
-      <button class="btn btn-secondary m-1">editar</button>
+      <button class="btn btn-secondary m-1" onclick="Curso.edit('${curso.id}')">editar</button>
       <button class="btn btn-danger m-1" onclick="Curso.destroy('${curso.id}')">excluir</button>
     </td>
   </tr>
@@ -112,7 +112,7 @@ const DOM = {
     return htmlCursos
   },
 
-  // limpar o html no Reload para não duplicar a informação
+  // limpar o html no Reload para não duplicar a informação. Idempotencia
   limparHtmlTabela() {
     DOM.cursosTabela.innerHTML = "";
   }
