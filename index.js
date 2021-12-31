@@ -118,6 +118,11 @@ const DOM = {
 
 // Informações formulário
 const Form = {
+
+  setValues() {
+    // todo
+  },
+
   getValues() {
     return {
       nome: document.querySelector("#name").value,
