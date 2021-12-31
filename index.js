@@ -162,7 +162,7 @@ const Form = {
       // Fechar o modal
       Modal.close();
       // Salvar curso e Reload
-      Curso.add(curso)
+      Curso.add(curso) // todo refatorar
     } catch (error) {
       alert(error.message)
     }
