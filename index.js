@@ -81,7 +81,11 @@ const Curso = {
   },
 
   edit(cursoId) {
-    console.log(cursoId)
+    const cursoEncontrado = Curso.all.find(curso => curso.id === cursoId);
+
+    Form.setValues(cursoEncontrado);
+
+    Modal.open();
 
   },
 }
@@ -124,13 +128,18 @@ const DOM = {
 // Informações formulário
 const Form = {
 
-  setValues() {
+  setValues(cursoEncontrado) {
     // todo
+    document.querySelector("#name").value = cursoEncontrado.nome;
+    document.querySelector("#description").value = cursoEncontrado.descricao;
+    document.querySelector('input[name="cursoId"]').value = cursoEncontrado.id; // Input hidden
+    document.querySelector(`input[value="${cursoEncontrado.imagem}"]`).checked = true;
+    console.log(cursoEncontrado)
+
   },
 
   getValues() {
     return {
-      id: uuidv4(), // retornar input hidden value; todo refatorar
       nome: document.querySelector("#name").value,
       descricao: document.querySelector("#description").value,
       imagem: document.querySelector('input[name="input-img"]:checked').value,
