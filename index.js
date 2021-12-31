@@ -99,7 +99,7 @@ const DOM = {
     <td>${curso.descricao}</td>
     <td>
       <button class="btn btn-secondary m-1">editar</button>
-      <button class="btn btn-danger m-1">excluir</button>
+      <button class="btn btn-danger m-1" onclick="Curso.destroy('${curso.id}')">excluir</button>
     </td>
   </tr>
     `
