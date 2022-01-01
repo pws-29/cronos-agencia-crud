@@ -1,22 +1,22 @@
-// Ações de Modal
+// Ações de Modal -----------------------------------
 let Modal = {
   open() {
-    // Abrir modal
-    // Adicionar a classe "active" ao modal
+    // Abrir modal adicionando classe "active";
+    // Focar no primeiro input ao abrir modal;
     document.querySelector('.modal-overlay').classList.add('active');
     document.querySelector('[data-behavior="modalForm"] #name').focus();
   },
 
   close() {
-    // Fechar modal
-    // Remover a classe "active" do modal
+    // Limpar os campos preenchidos ao fechar o modal (cancelar ou salvar);
+    // Fechar o modal removendo a classe "active";
     Form.limparCampos();
     document.querySelector('.modal-overlay').classList.remove('active');
   }
 }
-// Ações de Modal
+// Ações de Modal -----------------------------------
 
-// Local Storage API
+// Local Storage API -----------------------------------
 const Storage = {
   get() {
     return JSON.parse(localStorage.getItem("cronos.cursos:cursos")) || [];
@@ -26,9 +26,9 @@ const Storage = {
     localStorage.setItem("cronos.cursos:cursos", JSON.stringify(cursos)); // Array -> String
   }
 }
-// Local Storage API
+// Local Storage API -----------------------------------
 
-// Lista Cursos
+// Lista de cursos iniciais -----------------------------------
 let cursos = [
   {
     id: 1,
@@ -49,15 +49,14 @@ let cursos = [
     imagem: "./imagens/ilustra-ux.png",
   },
 ]
-// Lista Cursos
+// Lista de cursos iniciais -----------------------------------
 
-// CRUD curso
+// Funções CRUD para os cursos -----------------------------------
 const Curso = {
   // Recupera valores do localStorage
   all: Storage.get(),
 
-  add(curso) { // create todo
-
+  add(curso) {
     Curso.all.unshift({
       ...curso,
       id: uuidv4()
@@ -67,11 +66,10 @@ const Curso = {
   },
 
   destroy(cursoId) {
-
     const cursoEncontrado = Curso.all.find(curso => curso.id === cursoId);
-    const indexDoCursoEncontrado = Curso.all.indexOf(cursoEncontrado) // poderíamos ter feito findIndex sem window.confirm
+    const indexDoCursoEncontrado = Curso.all.indexOf(cursoEncontrado); // poderíamos ter feito findIndex sem window.confirm;
 
-    // Semáforo (if else com estrutura reduzida)
+    // Semáforo (if else com estrutura reduzida. Caso o usuário cancele, o sistema para o fluxo);
     if (!window.confirm(`Deseja excluir o curso: ${cursoEncontrado.nome}?`))
       return;
 
@@ -86,15 +84,13 @@ const Curso = {
     Form.setValues(cursoEncontrado);
 
     Modal.open();
-
   },
 
   update(cursoEditado) {
-    console.log('Função Update', cursoEditado)
     const cursoId = cursoEditado.id;
     const cursoEncontrado = Curso.all.find(curso => curso.id === cursoId);
 
-    Object.keys(cursoEditado).forEach(chave => cursoEncontrado[chave] = cursoEditado[chave])
+    Object.keys(cursoEditado).forEach(chave => cursoEncontrado[chave] = cursoEditado[chave]);
 
     // cursoEncontrado.nome = cursoEditado.nome;
     // cursoEncontrado.descricao = cursoEditado.descricao;
@@ -103,12 +99,12 @@ const Curso = {
     App.reload();
   }
 }
-// CRUD curso
+// Funções CRUD para os cursos -----------------------------------
 
-// Montando DOM
+// Montando DOM -----------------------------------
 const DOM = {
-  // corpo da tabela (onde os cursos são inseridos)
-  cursosTabela: document.querySelector('[data-behavior="tbodyCursos"]'), // refatorar data-behavior. classe apenas para estilizar
+  // corpo da tabela (onde os cursos são inseridos);
+  cursosTabela: document.querySelector('[data-behavior="tbodyCursos"]'), // convenção data-behavior para interagir com JS;
 
   addCurso(curso) {
     DOM.cursosTabela.innerHTML += DOM.innerHTMLCursos(curso);
@@ -130,27 +126,28 @@ const DOM = {
     return htmlCursos
   },
 
-  // limpar o html no Reload para não duplicar a informação. Idempotencia
+  // limpar o html no Reload para não duplicar a informação. Idempotencia;
   limparHtmlTabela() {
     DOM.cursosTabela.innerHTML = "";
   }
 
 }
 
-// Montando DOM
+// Montando DOM -----------------------------------
 
-// Informações formulário
+// Informações formulário -----------------------------------
 const Form = {
 
   setValues(cursoEncontrado) {
-    // todo
+    // Recuperando os valores do curso que será editado e colocoando-os no formulário;
     document.querySelector("#name").value = cursoEncontrado.nome;
     document.querySelector("#description").value = cursoEncontrado.descricao;
-    document.querySelector('input[name="cursoId"]').value = cursoEncontrado.id; // Input hidden
+    document.querySelector('input[name="cursoId"]').value = cursoEncontrado.id; // Input hidden;
     document.querySelector(`input[value="${cursoEncontrado.imagem}"]`).checked = true;
   },
 
   getValues() {
+    // Pegando os valores preenchidos no formulário;
     return {
       nome: document.querySelector("#name").value,
       descricao: document.querySelector("#description").value,
@@ -160,37 +157,36 @@ const Form = {
   },
 
   limparCampos() {
-    document.querySelector("#name").value = ""; // Limpar input do nome
-    document.querySelector("#description").value = ""; // Limpar input da descricao
-    document.getElementById("img-web").checked = true; // Retornar o valor checked pra img 1.
+    // Limpar input do nome;
+    document.querySelector("#name").value = "";
+    // Limpar input da descricao;
+    document.querySelector("#description").value = "";
+    // Retornar o valor checked pra img 1;
+    document.getElementById("img-web").checked = true;
   },
 
   validarCampos(cursos) {
-    // Valida se os campos nome e descricao estão preenchidos
-    const { nome, descricao } = cursos; // desestruturação
+    // Valida se os campos nome e descricao estão preenchidos;
+    // desestruturação;
+    const { nome, descricao } = cursos;
 
-    if (descricao.trim() === "" || nome.trim() === "") { // trim remove os espaços em branco
+    if (descricao.trim() === "" || nome.trim() === "") { // trim remove os espaços em branco;
       throw new Error("[Erro] Todos os campos devem ser preenchidos!")
     }
   },
 
   submit(event) {
-    // Alterar comportamento padrão do submit
+    // Alterar comportamento padrão do submit;
     event.preventDefault();
 
     try {
-      // Buscar valores do Form
+      // Buscar valores do Form;
       const curso = Form.getValues();
-      // Validando campos do Formulário
+      // Validando campos do Formulário;
       Form.validarCampos(curso);
-
-      // // Apagar campos do formulário
-      // Form.limparCampos();
-
-      // Fechar o modal
+      // Fechar o modal e limpar campos preenchidos;
       Modal.close();
-      // Salvar curso e Reload
-
+      // Salvar ou editar o curso (ambos fazem o reload());
       if (curso.id) {
         Curso.update(curso)
       } else {
@@ -202,22 +198,22 @@ const Form = {
 
   }
 }
-// Informações formulário
+// Informações formulário -----------------------------------
 
-// Funções iniciar App
+// Funções iniciar App -----------------------------------
 const App = {
   init() {
-    // Montando html
+    // Montando html;
     Curso.all.forEach(DOM.addCurso);
 
-    // Set storage
+    // Set storage;
     Storage.set(Curso.all);
   },
   reload() {
-    DOM.limparHtmlTabela(); // idempotencia.
+    DOM.limparHtmlTabela(); // idempotencia;
     App.init();
   }
 }
-// Funções iniciar App
+// Funções iniciar App -----------------------------------
 
 App.init();
