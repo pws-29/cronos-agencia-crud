@@ -42,7 +42,7 @@ let cursos = [
 // Local Storage API -----------------------------------
 const Storage = {
   get() {
-    return JSON.parse(localStorage.getItem("cronos.cursos:cursos")) || [cursos];
+    return JSON.parse(localStorage.getItem("cronos.cursos:cursos")) || [...cursos]; // todo
   },
 
   set(cursos) {
@@ -218,4 +218,3 @@ const App = {
 // Funções iniciar App -----------------------------------
 
 App.init();
-Storage.set(cursos);
