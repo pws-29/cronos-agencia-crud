@@ -16,10 +16,33 @@ let Modal = {
 }
 // Ações de Modal -----------------------------------
 
+// Lista de cursos iniciais -----------------------------------
+let cursos = [
+  {
+    id: uuidv4(),
+    nome: "Desenvolvimento Web",
+    descricao: "Consequatur debitis ipsa numquam illum placeat quod deleniti.",
+    imagem: "./imagens/ilustra-web.png",
+  },
+  {
+    id: uuidv4(),
+    nome: "Marketing Digital",
+    descricao: "Consequatur debitis ipsa numquam illum placeat quod deleniti.",
+    imagem: "./imagens/ilustra-marketing.png",
+  },
+  {
+    id: uuidv4(),
+    nome: "Consultoria UX",
+    descricao: "Consequatur debitis ipsa numquam illum placeat quod deleniti.",
+    imagem: "./imagens/ilustra-ux.png",
+  },
+]
+// Lista de cursos iniciais -----------------------------------
+
 // Local Storage API -----------------------------------
 const Storage = {
   get() {
-    return JSON.parse(localStorage.getItem("cronos.cursos:cursos")) || [];
+    return JSON.parse(localStorage.getItem("cronos.cursos:cursos")) || [cursos];
   },
 
   set(cursos) {
@@ -28,28 +51,6 @@ const Storage = {
 }
 // Local Storage API -----------------------------------
 
-// Lista de cursos iniciais -----------------------------------
-let cursos = [
-  {
-    id: 1,
-    nome: "Desenvolvimento Web",
-    descricao: "Consequatur debitis ipsa numquam illum placeat quod deleniti.",
-    imagem: "./imagens/ilustra-web.png",
-  },
-  {
-    id: 2,
-    nome: "Marketing Digital",
-    descricao: "Consequatur debitis ipsa numquam illum placeat quod deleniti.",
-    imagem: "./imagens/ilustra-marketing.png",
-  },
-  {
-    id: 3,
-    nome: "Consultoria UX",
-    descricao: "Consequatur debitis ipsa numquam illum placeat quod deleniti.",
-    imagem: "./imagens/ilustra-ux.png",
-  },
-]
-// Lista de cursos iniciais -----------------------------------
 
 // Funções CRUD para os cursos -----------------------------------
 const Curso = {
@@ -217,3 +218,4 @@ const App = {
 // Funções iniciar App -----------------------------------
 
 App.init();
+Storage.set(cursos);
