@@ -93,6 +93,7 @@ const Curso = {
 
     Object.keys(cursoEditado).forEach(chave => cursoEncontrado[chave] = cursoEditado[chave]);
 
+    // Mesmo código que o de cima, porém o de cima é um loop
     // cursoEncontrado.nome = cursoEditado.nome;
     // cursoEncontrado.descricao = cursoEditado.descricao;
     // cursoEncontrado.imagem = cursoEditado.imagem;
@@ -166,10 +167,10 @@ const Form = {
     document.getElementById("img-web").checked = true;
   },
 
-  validarCampos(cursos) {
+  validarCampos(curso) {
     // Valida se os campos nome e descricao estão preenchidos;
     // desestruturação;
-    const { nome, descricao } = cursos;
+    const { nome, descricao } = curso;
 
     if (descricao.trim() === "" || nome.trim() === "") { // trim remove os espaços em branco;
       throw new Error("[Erro] Todos os campos devem ser preenchidos!")
@@ -188,10 +189,10 @@ const Form = {
       // Fechar o modal e limpar campos preenchidos;
       Modal.close();
       // Salvar ou editar o curso (ambos fazem o reload());
-      if (curso.id) {
-        Curso.update(curso)
-      } else {
+      if (curso.id === "") {
         Curso.add(curso)
+      } else {
+        Curso.update(curso)
       }
     } catch (error) {
       alert(error.message)
