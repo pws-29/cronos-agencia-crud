@@ -154,6 +154,8 @@ button:hover {
 
 /* Botões */
 
+
+/* Responsividade */ 
 @media(max-width: 550px) {
   .tituloModal {
     text-align: center;
@@ -167,5 +169,6 @@ button:hover {
     flex-direction: column;
   }
 }
+/* Responsividade */ 
 
 
