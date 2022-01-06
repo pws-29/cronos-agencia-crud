@@ -106,7 +106,7 @@ input, textarea {
   flex-direction: column;
 }
 
-.input-container {
+.img-container {
   padding-top: 8px;
   display: flex;
   justify-content: space-between;
@@ -153,5 +153,19 @@ button:hover {
 }
 
 /* Botões */
+
+@media(max-width: 550px) {
+  .tituloModal {
+    text-align: center;
+  }
+
+  .input-imagens {
+    align-items: center;
+  }
+
+  .img-container {
+    flex-direction: column;
+  }
+}
 
 
