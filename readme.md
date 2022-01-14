@@ -11,22 +11,11 @@
 ## 💻 Tecnologias Utilizads
 
 Durante o projeto, foram utilizadas as seguintes tecnologias: 
- - [React](https://pt-br.reactjs.org/)
  - [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
  - [UUIDV4](https://www.uuidtools.com/v4)
  - [CSS](https://www.w3.org/Style/CSS/)
  - [HTML](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
 
-
-## 💻 Iniciando o projeto com React
-
-Esse projeto foi criado com [Create React App](https://github.com/facebook/create-react-app).
-
-
-### `npm start`
-
-Para rodar o projeto na sua máquina, insira o comando dentro da pasta *cronos-react-app*.
-Abra [http://localhost:3000](http://localhost:3000) para ver no seu browser.
 
  ## ☕ Sobre
 Esse projeto foi desenvolvido durante a Semana 6 do Gama Experience #40, um projeto em trio. O Desafio principal tinha por objetivo construir CRUD em JavaScript. O HTML principal da página foi entregue pela equipe da Gama, e cada grupo precisou então construi um modal e funcionalidades para **criar, ler, atualizar e destruir** um curso. Utilizamod o **localStorage** para armazenar os dados.
